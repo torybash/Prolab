@@ -29,17 +29,18 @@ message PlayerData {
 
   int32 id = 1;  // Unique ID number for this person.
   State state = 2;
-  int32 posx = 3;
-  int32 posy = 4;
+  float posX = 3;
+  float posY = 4;
 }
 
 // Our address book file is just one of these.
 message GameData {
   repeated PlayerData playerDatas = 1;
+  int32 frameCount = 2;
 }
 
 message ClientInput {
-  int32 movex = 1;
-  int32 movey = 2;
+  float moveX = 1;
+  float moveY = 2;
 }
 // [END messages]

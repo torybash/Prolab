@@ -24,18 +24,18 @@ namespace ProlabServer {
           string.Concat(
             "Cg9Qcm9sYWJCdWYucHJvdG8SCHR1dG9yaWFsIn4KClBsYXllckRhdGESCgoC",
             "aWQYASABKAUSKQoFc3RhdGUYAiABKA4yGi50dXRvcmlhbC5QbGF5ZXJEYXRh",
-            "LlN0YXRlEgwKBHBvc3gYAyABKAUSDAoEcG9zeRgEIAEoBSIdCgVTdGF0ZRII",
-            "CgRNRU5VEAASCgoGQUNUSVZFEAEiNQoIR2FtZURhdGESKQoLcGxheWVyRGF0",
-            "YXMYASADKAsyFC50dXRvcmlhbC5QbGF5ZXJEYXRhIisKC0NsaWVudElucHV0",
-            "Eg0KBW1vdmV4GAEgASgFEg0KBW1vdmV5GAIgASgFQjgKFGNvbS5leGFtcGxl",
-            "LnR1dG9yaWFsQhFBZGRyZXNzQm9va1Byb3Rvc6oCDFByb2xhYlNlcnZlcmIG",
-            "cHJvdG8z"));
+            "LlN0YXRlEgwKBHBvc1gYAyABKAISDAoEcG9zWRgEIAEoAiIdCgVTdGF0ZRII",
+            "CgRNRU5VEAASCgoGQUNUSVZFEAEiSQoIR2FtZURhdGESKQoLcGxheWVyRGF0",
+            "YXMYASADKAsyFC50dXRvcmlhbC5QbGF5ZXJEYXRhEhIKCmZyYW1lQ291bnQY",
+            "AiABKAUiKwoLQ2xpZW50SW5wdXQSDQoFbW92ZVgYASABKAISDQoFbW92ZVkY",
+            "AiABKAJCOAoUY29tLmV4YW1wbGUudHV0b3JpYWxCEUFkZHJlc3NCb29rUHJv",
+            "dG9zqgIMUHJvbGFiU2VydmVyYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProlabServer.PlayerData), global::ProlabServer.PlayerData.Parser, new[]{ "Id", "State", "Posx", "Posy" }, null, new[]{ typeof(global::ProlabServer.PlayerData.Types.State) }, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProlabServer.GameData), global::ProlabServer.GameData.Parser, new[]{ "PlayerDatas" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::ProlabServer.ClientInput), global::ProlabServer.ClientInput.Parser, new[]{ "Movex", "Movey" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::ProlabServer.PlayerData), global::ProlabServer.PlayerData.Parser, new[]{ "Id", "State", "PosX", "PosY" }, null, new[]{ typeof(global::ProlabServer.PlayerData.Types.State) }, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ProlabServer.GameData), global::ProlabServer.GameData.Parser, new[]{ "PlayerDatas", "FrameCount" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::ProlabServer.ClientInput), global::ProlabServer.ClientInput.Parser, new[]{ "MoveX", "MoveY" }, null, null, null)
           }));
     }
     #endregion
@@ -71,8 +71,8 @@ namespace ProlabServer {
     public PlayerData(PlayerData other) : this() {
       id_ = other.id_;
       state_ = other.state_;
-      posx_ = other.posx_;
-      posy_ = other.posy_;
+      posX_ = other.posX_;
+      posY_ = other.posY_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -105,25 +105,25 @@ namespace ProlabServer {
       }
     }
 
-    /// <summary>Field number for the "posx" field.</summary>
-    public const int PosxFieldNumber = 3;
-    private int posx_;
+    /// <summary>Field number for the "posX" field.</summary>
+    public const int PosXFieldNumber = 3;
+    private float posX_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Posx {
-      get { return posx_; }
+    public float PosX {
+      get { return posX_; }
       set {
-        posx_ = value;
+        posX_ = value;
       }
     }
 
-    /// <summary>Field number for the "posy" field.</summary>
-    public const int PosyFieldNumber = 4;
-    private int posy_;
+    /// <summary>Field number for the "posY" field.</summary>
+    public const int PosYFieldNumber = 4;
+    private float posY_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Posy {
-      get { return posy_; }
+    public float PosY {
+      get { return posY_; }
       set {
-        posy_ = value;
+        posY_ = value;
       }
     }
 
@@ -142,8 +142,8 @@ namespace ProlabServer {
       }
       if (Id != other.Id) return false;
       if (State != other.State) return false;
-      if (Posx != other.Posx) return false;
-      if (Posy != other.Posy) return false;
+      if (PosX != other.PosX) return false;
+      if (PosY != other.PosY) return false;
       return true;
     }
 
@@ -152,8 +152,8 @@ namespace ProlabServer {
       int hash = 1;
       if (Id != 0) hash ^= Id.GetHashCode();
       if (State != 0) hash ^= State.GetHashCode();
-      if (Posx != 0) hash ^= Posx.GetHashCode();
-      if (Posy != 0) hash ^= Posy.GetHashCode();
+      if (PosX != 0F) hash ^= PosX.GetHashCode();
+      if (PosY != 0F) hash ^= PosY.GetHashCode();
       return hash;
     }
 
@@ -172,13 +172,13 @@ namespace ProlabServer {
         output.WriteRawTag(16);
         output.WriteEnum((int) State);
       }
-      if (Posx != 0) {
-        output.WriteRawTag(24);
-        output.WriteInt32(Posx);
+      if (PosX != 0F) {
+        output.WriteRawTag(29);
+        output.WriteFloat(PosX);
       }
-      if (Posy != 0) {
-        output.WriteRawTag(32);
-        output.WriteInt32(Posy);
+      if (PosY != 0F) {
+        output.WriteRawTag(37);
+        output.WriteFloat(PosY);
       }
     }
 
@@ -191,11 +191,11 @@ namespace ProlabServer {
       if (State != 0) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) State);
       }
-      if (Posx != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Posx);
+      if (PosX != 0F) {
+        size += 1 + 4;
       }
-      if (Posy != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Posy);
+      if (PosY != 0F) {
+        size += 1 + 4;
       }
       return size;
     }
@@ -211,11 +211,11 @@ namespace ProlabServer {
       if (other.State != 0) {
         State = other.State;
       }
-      if (other.Posx != 0) {
-        Posx = other.Posx;
+      if (other.PosX != 0F) {
+        PosX = other.PosX;
       }
-      if (other.Posy != 0) {
-        Posy = other.Posy;
+      if (other.PosY != 0F) {
+        PosY = other.PosY;
       }
     }
 
@@ -235,12 +235,12 @@ namespace ProlabServer {
             state_ = (global::ProlabServer.PlayerData.Types.State) input.ReadEnum();
             break;
           }
-          case 24: {
-            Posx = input.ReadInt32();
+          case 29: {
+            PosX = input.ReadFloat();
             break;
           }
-          case 32: {
-            Posy = input.ReadInt32();
+          case 37: {
+            PosY = input.ReadFloat();
             break;
           }
         }
@@ -289,6 +289,7 @@ namespace ProlabServer {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public GameData(GameData other) : this() {
       playerDatas_ = other.playerDatas_.Clone();
+      frameCount_ = other.frameCount_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -306,6 +307,17 @@ namespace ProlabServer {
       get { return playerDatas_; }
     }
 
+    /// <summary>Field number for the "frameCount" field.</summary>
+    public const int FrameCountFieldNumber = 2;
+    private int frameCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int FrameCount {
+      get { return frameCount_; }
+      set {
+        frameCount_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as GameData);
@@ -320,6 +332,7 @@ namespace ProlabServer {
         return true;
       }
       if(!playerDatas_.Equals(other.playerDatas_)) return false;
+      if (FrameCount != other.FrameCount) return false;
       return true;
     }
 
@@ -327,6 +340,7 @@ namespace ProlabServer {
     public override int GetHashCode() {
       int hash = 1;
       hash ^= playerDatas_.GetHashCode();
+      if (FrameCount != 0) hash ^= FrameCount.GetHashCode();
       return hash;
     }
 
@@ -338,12 +352,19 @@ namespace ProlabServer {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
       playerDatas_.WriteTo(output, _repeated_playerDatas_codec);
+      if (FrameCount != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(FrameCount);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
       size += playerDatas_.CalculateSize(_repeated_playerDatas_codec);
+      if (FrameCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(FrameCount);
+      }
       return size;
     }
 
@@ -353,6 +374,9 @@ namespace ProlabServer {
         return;
       }
       playerDatas_.Add(other.playerDatas_);
+      if (other.FrameCount != 0) {
+        FrameCount = other.FrameCount;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -365,6 +389,10 @@ namespace ProlabServer {
             break;
           case 10: {
             playerDatas_.AddEntriesFrom(input, _repeated_playerDatas_codec);
+            break;
+          }
+          case 16: {
+            FrameCount = input.ReadInt32();
             break;
           }
         }
@@ -397,8 +425,8 @@ namespace ProlabServer {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ClientInput(ClientInput other) : this() {
-      movex_ = other.movex_;
-      movey_ = other.movey_;
+      moveX_ = other.moveX_;
+      moveY_ = other.moveY_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -406,25 +434,25 @@ namespace ProlabServer {
       return new ClientInput(this);
     }
 
-    /// <summary>Field number for the "movex" field.</summary>
-    public const int MovexFieldNumber = 1;
-    private int movex_;
+    /// <summary>Field number for the "moveX" field.</summary>
+    public const int MoveXFieldNumber = 1;
+    private float moveX_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Movex {
-      get { return movex_; }
+    public float MoveX {
+      get { return moveX_; }
       set {
-        movex_ = value;
+        moveX_ = value;
       }
     }
 
-    /// <summary>Field number for the "movey" field.</summary>
-    public const int MoveyFieldNumber = 2;
-    private int movey_;
+    /// <summary>Field number for the "moveY" field.</summary>
+    public const int MoveYFieldNumber = 2;
+    private float moveY_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Movey {
-      get { return movey_; }
+    public float MoveY {
+      get { return moveY_; }
       set {
-        movey_ = value;
+        moveY_ = value;
       }
     }
 
@@ -441,16 +469,16 @@ namespace ProlabServer {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Movex != other.Movex) return false;
-      if (Movey != other.Movey) return false;
+      if (MoveX != other.MoveX) return false;
+      if (MoveY != other.MoveY) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Movex != 0) hash ^= Movex.GetHashCode();
-      if (Movey != 0) hash ^= Movey.GetHashCode();
+      if (MoveX != 0F) hash ^= MoveX.GetHashCode();
+      if (MoveY != 0F) hash ^= MoveY.GetHashCode();
       return hash;
     }
 
@@ -461,24 +489,24 @@ namespace ProlabServer {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (Movex != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(Movex);
+      if (MoveX != 0F) {
+        output.WriteRawTag(13);
+        output.WriteFloat(MoveX);
       }
-      if (Movey != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Movey);
+      if (MoveY != 0F) {
+        output.WriteRawTag(21);
+        output.WriteFloat(MoveY);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Movex != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Movex);
+      if (MoveX != 0F) {
+        size += 1 + 4;
       }
-      if (Movey != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Movey);
+      if (MoveY != 0F) {
+        size += 1 + 4;
       }
       return size;
     }
@@ -488,11 +516,11 @@ namespace ProlabServer {
       if (other == null) {
         return;
       }
-      if (other.Movex != 0) {
-        Movex = other.Movex;
+      if (other.MoveX != 0F) {
+        MoveX = other.MoveX;
       }
-      if (other.Movey != 0) {
-        Movey = other.Movey;
+      if (other.MoveY != 0F) {
+        MoveY = other.MoveY;
       }
     }
 
@@ -504,12 +532,12 @@ namespace ProlabServer {
           default:
             input.SkipLastField();
             break;
-          case 8: {
-            Movex = input.ReadInt32();
+          case 13: {
+            MoveX = input.ReadFloat();
             break;
           }
-          case 16: {
-            Movey = input.ReadInt32();
+          case 21: {
+            MoveY = input.ReadFloat();
             break;
           }
         }

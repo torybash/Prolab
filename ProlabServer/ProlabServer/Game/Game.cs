@@ -27,5 +27,21 @@ namespace ProlabServer
 		{
 			return players.FirstOrDefault(p => p.Guid == id);
 		}
+
+		public GameData GetGameData()
+		{
+			var gameData = new GameData();
+			foreach (var item in players)
+			{
+				var playerData = new PlayerData
+				{
+					PosX = item.Position.x,
+					PosY = item.Position.y
+				};
+				gameData.PlayerDatas.Add(playerData);
+			}
+
+			return gameData;
+		}
 	}
 }

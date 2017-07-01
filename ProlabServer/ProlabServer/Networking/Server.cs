@@ -14,17 +14,19 @@ namespace ProlabServer
 		public Action<Guid> OnPlayerConnected;
 		public Action<Guid> OnPlayerDisconnected;
 
+		List<IWebSocketConnection> _allSockets;
+
 		public void StartServer()
 		{
 			FleckLog.Level = LogLevel.Debug;
-			var allSockets = new List<IWebSocketConnection>();
+			_allSockets = new List<IWebSocketConnection>();
 			var server = new WebSocketServer("ws://0.0.0.0:8080");
 			server.Start(socket =>
 				{
 					socket.OnOpen = () =>
 						{
 							Console.WriteLine("Opened connection to: " + ObjectDumper.Dump(socket.ConnectionInfo));
-							allSockets.Add(socket);
+							_allSockets.Add(socket);
 
 							if (OnPlayerConnected != null) OnPlayerConnected(socket.ConnectionInfo.Id);
 
@@ -34,7 +36,7 @@ namespace ProlabServer
 					socket.OnClose = () =>
 						{
 							Console.WriteLine("Closed connection to: " + ObjectDumper.Dump(socket.ConnectionInfo));
-							allSockets.Remove(socket);
+							_allSockets.Remove(socket);
 
 							if (OnPlayerDisconnected != null) OnPlayerDisconnected(socket.ConnectionInfo.Id);
 
@@ -45,7 +47,6 @@ namespace ProlabServer
 							Console.WriteLine("Message received from: " + ObjectDumper.Dump(socket.ConnectionInfo));
 							Console.WriteLine("\nMessage: " + message);
 
-							ReadClientMessage()
 							//var player = GetPlayer(socket.ConnectionInfo.Id);
 							//if (player != null)
 							//{
@@ -53,7 +54,7 @@ namespace ProlabServer
 							//}
 
 							//Pass message to all clients
-							allSockets.ToList().ForEach(s => s.Send("Echo: " + message));
+							_allSockets.ToList().ForEach(s => s.Send("Echo: " + message));
 						};
 					socket.OnBinary = bytes =>
 						{
@@ -65,17 +66,14 @@ namespace ProlabServer
 				});
 
 
-			var input = Console.ReadLine();
-			while (input != "exit")
-			{
 
-				//data.WriteTo
-				foreach (var socket in allSockets.ToList())
-				{
-					
-					socket.Send(input);
-				}
-				input = Console.ReadLine();
+		}
+
+		public void WriteMessage(string msg)
+		{
+			foreach (var socket in _allSockets.ToList())
+			{
+				socket.Send(msg);
 			}
 		}
 
@@ -83,18 +81,19 @@ namespace ProlabServer
 		{
 			var stream = new MemoryStream();
 			gameData.WriteTo(stream);
-			stream.GetBuffer();
-			//PlayerData data = null;
-			//data.WriteTo(stream);
+			var buffer = stream.GetBuffer();
+			foreach (var socket in _allSockets.ToList())
+			{
+				socket.Send(buffer);
+			}
 		}
 
 		public void ReadClientMessage(byte[] bytes, Guid id)
 		{
-
 			var input = ClientInput.Parser.ParseFrom(bytes);
 			if (input != null)
 			{
-				Console.WriteLine("input.Move: " + input.Movex + ", " + input.Movey);
+				Console.WriteLine("input.Move: " + input.MoveX + ", " + input.MoveY);
 			}
 		}
 	}
