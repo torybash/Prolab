@@ -1,0 +1,45 @@
+// See README.txt for information and build instructions.
+//
+// Note: START and END tags are used in comments to define sections used in
+// tutorials.  They are not part of the syntax for Protocol Buffers.
+//
+// To get an in-depth walkthrough of this file and the related examples, see:
+// https://developers.google.com/protocol-buffers/docs/tutorials
+
+// [START declaration]
+syntax = "proto3";
+package tutorial;
+// [END declaration]
+
+// [START java_declaration]
+option java_package = "com.example.tutorial";
+option java_outer_classname = "AddressBookProtos";
+// [END java_declaration]
+
+// [START csharp_declaration]
+option csharp_namespace = "ProlabServer";
+// [END csharp_declaration]
+
+// [START messages]
+message PlayerData {
+  enum State {
+    MENU = 0;
+    ACTIVE = 1;
+  }
+
+  int32 id = 1;  // Unique ID number for this person.
+  State state = 2;
+  int32 posx = 3;
+  int32 posy = 4;
+}
+
+// Our address book file is just one of these.
+message GameData {
+  repeated PlayerData playerDatas = 1;
+}
+
+message ClientInput {
+  int32 movex = 1;
+  int32 movey = 2;
+}
+// [END messages]
