@@ -1,0 +1,37 @@
+<!doctype html>
+
+<html>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link href="https://fonts.googleapis.com/css?family=VT323&amp;subset=latin-ext" rel="stylesheet">   
+    
+    <style>
+        body {
+            font-family: 'VT323', monospace;
+            color:azure;
+        }
+    </style>
+    <script src="script/pixi.min.js"></script>
+    <body>
+        <script type="text/javascript">
+            var type = "WebGL"
+            if(!PIXI.utils.isWebGLSupported()){
+                type = "canvas"
+            }
+
+            PIXI.utils.sayHello(type)
+        </script>
+        <div id="controls">
+            <button type="button" onclick="connect();">connect()</input>
+            <button type="button" onclick="send('hello');">send()</input>
+        </div>
+        <div id="output">
+            Output:<br/>
+        </div>
+
+        
+        <script src="script/playground-base.js"></script>
+        <script src="script/main.js"></script>
+
+    </body>
+</html>
