@@ -23,6 +23,14 @@ namespace ProlabServer
 			players.Remove(player);
 		}
 
+		public void OnPlayerInput(Guid id, ClientInput input)
+		{
+			var player = GetPlayer(id);
+			player.ApplyMove(new Vector2(input.MoveX, input.MoveY));
+		}
+
+
+
 		private Player GetPlayer(Guid id)
 		{
 			return players.FirstOrDefault(p => p.Guid == id);
@@ -43,5 +51,7 @@ namespace ProlabServer
 
 			return gameData;
 		}
+
+
 	}
 }

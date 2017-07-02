@@ -42,11 +42,10 @@ namespace ProlabServer
 			_game = new Game();
 			_server = new Server();
 
-			_server.OnPlayerConnected += _game.OnPlayerConnected;
-			_server.OnPlayerDisconnected += _game.OnPlayerDisconnected;
+			_server.OnClientConnected += _game.OnPlayerConnected;
+			_server.OnClientDisconnected += _game.OnPlayerDisconnected;
+			_server.OnClientInput += _game.OnPlayerInput;
 			_server.StartServer();
-
-			
 
 			var timer = new Timer(GameLoopTime);
 			timer.Elapsed += Timer;

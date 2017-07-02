@@ -21,5 +21,10 @@ namespace ProlabServer
 			
 			Position = pos;
 		}
+
+		public void ApplyMove(Vector2 move)
+		{
+			Position += move;
+		}
 	}
 }

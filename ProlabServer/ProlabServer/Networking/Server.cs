@@ -11,8 +11,9 @@ namespace ProlabServer
 	public class Server
 	{
 
-		public Action<Guid> OnPlayerConnected;
-		public Action<Guid> OnPlayerDisconnected;
+		public Action<Guid> OnClientConnected;
+		public Action<Guid> OnClientDisconnected;
+		public Action<Guid, ClientInput> OnClientInput;
 
 		List<IWebSocketConnection> _allSockets;
 
@@ -28,7 +29,7 @@ namespace ProlabServer
 							Console.WriteLine("Opened connection to: " + ObjectDumper.Dump(socket.ConnectionInfo));
 							_allSockets.Add(socket);
 
-							if (OnPlayerConnected != null) OnPlayerConnected(socket.ConnectionInfo.Id);
+							if (OnClientConnected != null) OnClientConnected(socket.ConnectionInfo.Id);
 
 
 
@@ -38,7 +39,7 @@ namespace ProlabServer
 							Console.WriteLine("Closed connection to: " + ObjectDumper.Dump(socket.ConnectionInfo));
 							_allSockets.Remove(socket);
 
-							if (OnPlayerDisconnected != null) OnPlayerDisconnected(socket.ConnectionInfo.Id);
+							if (OnClientDisconnected != null) OnClientDisconnected(socket.ConnectionInfo.Id);
 
 
 						};
@@ -94,6 +95,7 @@ namespace ProlabServer
 			if (input != null)
 			{
 				Console.WriteLine("input.Move: " + input.MoveX + ", " + input.MoveY);
+				if (OnClientInput != null) OnClientInput();
 			}
 		}
 	}
